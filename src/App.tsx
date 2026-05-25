@@ -54,25 +54,27 @@ function App() {
   const handleChoice = async (index: number, next: string) => {
   if (selectedChoice !== null) return;
 
-  const audio = audioRef.current;
+  const bgAudio = audioRef.current;
+    const clickAudio = clickAudioRef.current;
+  
+  // DỪNG audio page
+  if (bgAudio) {
+    bgAudio.pause();
+    bgAudio.currentTime = 0;
+    setIsPlaying(false);
+  }
 
-  if (audio && scene.audio && !isPlaying) {
+  // PHÁT voice choice
+  if (clickAudio) {
+    clickAudio.src = funnySound;
+    clickAudio.currentTime = 0;
+
     try {
-      await audio.play();
-      setIsPlaying(true);
+      await clickAudio.play();
     } catch (err) {
       console.log(err);
     }
   }
-
-  if (clickAudioRef.current) {
-  clickAudioRef.current.src = funnySound;
-  clickAudioRef.current.currentTime = 0;
-
-  clickAudioRef.current.play().catch((err) => {
-    console.log(err);
-  });
-}
 
   setSelectedChoice(index);
 
