@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import story from "./data/story";
-import "./app.css";
+import "./App.css";
 import funnySound from "./audio/0525(2).mp4"
 import type { Story } from "./types/story";
 import { motion, AnimatePresence } from "framer-motion";
